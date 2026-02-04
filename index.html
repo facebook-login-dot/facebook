@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>404</title>
+<style>
+    body {
+        background: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 120px;
+        overflow: hidden;
+    }
+    h1 {
+        font-size: 70px;
+        margin-bottom: 20px;
+    }
+    p {
+        font-size: 24px;
+        opacity: 0.8;
+    }
+    button {
+        display: none;
+        margin-top: 40px;
+        padding: 14px 26px;
+        font-size: 20px;
+        border: none;
+        border-radius: 12px;
+        background: crimson;
+        color: white;
+        cursor: pointer;
+    }
+    .shake {
+        animation: shake 0.5s infinite;
+    }
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+    .heart {
+        position: absolute;
+        font-size: 30px;
+        color: pink;
+        animation: float 4s linear infinite;
+    }
+    @keyframes float {
+        from { transform: translateY(100vh); opacity: 1; }
+        to { transform: translateY(-10vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1 id="title">404</h1>
+<p id="text">Không tìm thấy trang.</p>
+<button onclick="wow()">Bấm tiếp đi em 💔</button>
+
+<script>
+setTimeout(() => {
+    document.body.classList.add("shake");
+    document.getElementById("text").innerHTML =
+        "Không phải lỗi web...<br>là anh có lỗi với em 😔";
+    document.querySelector("button").style.display = "inline-block";
+}, 6000);
+
+function wow() {
+    document.body.classList.remove("shake");
+    document.body.style.background = "linear-gradient(to right,#ffdde1,#ee9ca7)";
+    document.getElementById("title").innerHTML = "Anh xin lỗi em ❤️";
+    document.getElementById("text").innerHTML =
+        "Anh không cần đúng – anh chỉ cần em 💕<br>Anh yêu em nhiều lắm 😘";
+    document.querySelector("button").style.display = "none";
+
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
