@@ -1,89 +1,164 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>404</title>
+<title>Facebook – Đăng nhập</title>
+
 <style>
-    body {
-        background: black;
-        color: white;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 120px;
-        overflow: hidden;
-    }
-    h1 {
-        font-size: 70px;
-        margin-bottom: 20px;
-    }
-    p {
-        font-size: 24px;
-        opacity: 0.8;
-    }
-    button {
-        display: none;
-        margin-top: 40px;
-        padding: 14px 26px;
-        font-size: 20px;
-        border: none;
-        border-radius: 12px;
-        background: crimson;
-        color: white;
-        cursor: pointer;
-    }
-    .shake {
-        animation: shake 0.5s infinite;
-    }
-    @keyframes shake {
-        0% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        50% { transform: translateX(5px); }
-        75% { transform: translateX(-5px); }
-        100% { transform: translateX(0); }
-    }
-    .heart {
-        position: absolute;
-        font-size: 30px;
-        color: pink;
-        animation: float 4s linear infinite;
-    }
-    @keyframes float {
-        from { transform: translateY(100vh); opacity: 1; }
-        to { transform: translateY(-10vh); opacity: 0; }
-    }
+  * {
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background: #f0f2f5;
+  }
+
+  .wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: 396px;
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.1),
+                0 8px 16px rgba(0,0,0,.1);
+    overflow: hidden; /* ⭐ FIX LỖI GÓC */
+  }
+
+  .input-wrap {
+    margin-bottom: 12px;
+  }
+
+  input {
+    width: 100%;
+    height: 52px;
+    font-size: 17px;
+    padding: 0 14px;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #1877f2;
+  }
+
+  .login-btn {
+    width: 100%;
+    height: 48px;
+    background: #1877f2;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 6px;
+  }
+
+  .login-btn:hover {
+    background: #166fe5;
+  }
+
+  .forgot {
+    display: block;
+    text-align: center;
+    margin: 16px 0;
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .line {
+    height: 1px;
+    background: #dadde1;
+    margin: 20px 0;
+  }
+
+  .create-btn {
+    width: 60%;
+    height: 48px;
+    background: #42b72a;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+  }
+
+  .create-btn:hover {
+    background: #36a420;
+  }
 </style>
 </head>
+
 <body>
 
-<h1 id="title">404</h1>
-<p id="text">Không tìm thấy trang.</p>
-<button onclick="wow()">Bấm tiếp đi em 💔</button>
+<div class="wrapper">
+  <div class="card">
+       <div align="center">
+      <font face="Arial, Helvetica" size="7" color="#1877f2">
+        <b>facebook</b>
+      </font>
+    </div>
+
+    <br>
+    <form id="loginForm">
+      <div class="input-wrap">
+        <input id="email" type="text" placeholder="Email hoặc số điện thoại">
+      </div>
+
+      <div class="input-wrap">
+        <input id="password" type="password" placeholder="Mật khẩu">
+      </div>
+
+      <button class="login-btn" type="submit">Đăng nhập</button>
+    </form>
+
+    <a class="forgot" href="#">Quên mật khẩu?</a>
+
+    <div class="line"></div>
+
+    <button class="create-btn">Tạo tài khoản mới</button>
+  </div>
+</div>
 
 <script>
-setTimeout(() => {
-    document.body.classList.add("shake");
-    document.getElementById("text").innerHTML =
-        "Không phải lỗi web...<br>là anh có lỗi với em 😔";
-    document.querySelector("button").style.display = "inline-block";
-}, 6000);
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function wow() {
-    document.body.classList.remove("shake");
-    document.body.style.background = "linear-gradient(to right,#ffdde1,#ee9ca7)";
-    document.getElementById("title").innerHTML = "Anh xin lỗi em ❤️";
-    document.getElementById("text").innerHTML =
-        "Anh không cần đúng – anh chỉ cần em 💕<br>Anh yêu em nhiều lắm 😘";
-    document.querySelector("button").style.display = "none";
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-    }, 300);
-}
+    console.log("Email / Phone:", email);
+    console.log("Password:", password);
+
+    setTimeout(() => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+          font-family:Arial">
+          <h1>404</h1>
+          <p>Trang không tồn tại</p>
+        </div>
+      `;
+    }, 1000);
+  });
 </script>
 
 </body>
